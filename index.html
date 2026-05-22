@@ -1531,7 +1531,7 @@ body.light .footer-brand-logo { color: var(--navy); }
       <div class="portfolio-item fade-up" data-cat="web">
         <div class="pi-bg"><div class="pi-emoji">🏢</div><div class="pi-cat">Corporate Website</div></div>
         <div class="pi-overlay">
-          <div class="pi-title">Digen Business Group</div>
+          <div class="pi-title">Kenyatta Business Group</div>
           <div class="pi-sub">Modern corporate website with full CMS integration</div>
           <a href="#" class="pi-link">View Case Study</a>
         </div>
@@ -1547,7 +1547,7 @@ body.light .footer-brand-logo { color: var(--navy); }
       <div class="portfolio-item fade-up delay-2" data-cat="school">
         <div class="pi-bg"><div class="pi-emoji">🎓</div><div class="pi-cat">School Portal</div></div>
         <div class="pi-overlay">
-          <div class="pi-title">School Academy Portal</div>
+          <div class="pi-title">Nairobi Academy Portal</div>
           <div class="pi-sub">Complete school management & communication system</div>
           <a href="#" class="pi-link">View Case Study</a>
         </div>
@@ -1571,7 +1571,7 @@ body.light .footer-brand-logo { color: var(--navy); }
       <div class="portfolio-item fade-up delay-3" data-cat="web">
         <div class="pi-bg"><div class="pi-emoji">🚀</div><div class="pi-cat">Startup Platform</div></div>
         <div class="pi-overlay">
-          <div class="pi-title">TechVentu KE</div>
+          <div class="pi-title">TechVenture KE</div>
           <div class="pi-sub">SaaS startup landing page with investor deck</div>
           <a href="#" class="pi-link">View Case Study</a>
         </div>
@@ -1781,14 +1781,17 @@ body.light .footer-brand-logo { color: var(--navy); }
             <div class="ci-icon">📧</div>
             <div>
               <div class="ci-label">Email Us</div>
-              <div class="ci-value">hello@digen.co.ke</div>
+              <div class="ci-value"><a href="mailto:info@digen.co.ke" style="color:inherit;text-decoration:none;">info@digen.co.ke</a></div>
             </div>
           </div>
           <div class="ci-item">
             <div class="ci-icon">📱</div>
             <div>
               <div class="ci-label">Call / WhatsApp</div>
-              <div class="ci-value">+254 728 532 560</div>
+              <div class="ci-value">
+                <a href="https://wa.me/254722442747" style="color:inherit;text-decoration:none;">+254 722 442 747</a><br/>
+                <a href="https://wa.me/254725815646" style="color:inherit;text-decoration:none;">+254 725 815 646</a>
+              </div>
             </div>
           </div>
           <div class="ci-item">
@@ -1805,21 +1808,21 @@ body.light .footer-brand-logo { color: var(--navy); }
         <div class="form-row">
           <div class="form-group">
             <label>Your Name</label>
-            <input type="text" placeholder="John Kamau"/>
+            <input type="text" id="cf-name" placeholder="John Kamau"/>
           </div>
           <div class="form-group">
             <label>Email Address</label>
-            <input type="email" placeholder="john@example.com"/>
+            <input type="email" id="cf-email" placeholder="john@example.com"/>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Phone Number</label>
-            <input type="tel" placeholder="+254 728 532 560"/>
+            <input type="tel" id="cf-phone" placeholder="+254 722 442 747"/>
           </div>
           <div class="form-group">
             <label>Service Interested In</label>
-            <select>
+            <select id="cf-service">
               <option>Select a service...</option>
               <option>Website Design & Development</option>
               <option>Branding & Graphic Design</option>
@@ -1832,7 +1835,7 @@ body.light .footer-brand-logo { color: var(--navy); }
         </div>
         <div class="form-group">
           <label>Your Message / Project Brief</label>
-          <textarea placeholder="Tell us about your project, goals, timeline, and budget..."></textarea>
+          <textarea id="cf-message" placeholder="Tell us about your project, goals, timeline, and budget..."></textarea>
         </div>
         <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.95rem;padding:0.9rem;" onclick="handleFormSubmit(this)">Send Message 🚀</button>
       </div>
@@ -2008,12 +2011,33 @@ setInterval(() => {
 
 // ─── FORM SUBMIT ───
 function handleFormSubmit(btn) {
-  btn.textContent = '✅ Message Sent!';
-  btn.style.background = 'linear-gradient(135deg, #00c97a, #00a862)';
-  setTimeout(() => {
-    btn.textContent = 'Send Message 🚀';
-    btn.style.background = '';
-  }, 3500);
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const phone   = document.getElementById('cf-phone').value.trim();
+  const service = document.getElementById('cf-service').value;
+  const message = document.getElementById('cf-message').value.trim();
+
+  if (!name || !email || !message) {
+    btn.textContent = '⚠️ Please fill required fields';
+    btn.style.background = 'linear-gradient(135deg,#e74c3c,#c0392b)';
+    setTimeout(() => { btn.textContent = 'Send Message 🚀'; btn.style.background = ''; }, 2500);
+    return;
+  }
+
+  const subject = encodeURIComponent('New Project Enquiry from ' + name + ' — Digen Website');
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Phone: ' + (phone || 'Not provided') + '\n' +
+    'Service: ' + service + '\n\n' +
+    'Message:\n' + message
+  );
+
+  window.location.href = 'mailto:info@digen.co.ke?subject=' + subject + '&body=' + body;
+
+  btn.textContent = '✅ Opening your email...';
+  btn.style.background = 'linear-gradient(135deg,#00c97a,#00a862)';
+  setTimeout(() => { btn.textContent = 'Send Message 🚀'; btn.style.background = ''; }, 3500);
 }
 
 // ─── SMOOTH SCROLL ───
