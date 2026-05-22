@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digen | Transforming Ideas Into Digital Excellence</title>
+<meta name="description" content="Digen is a creative digital solutions company helping businesses, ministries, schools, and startups establish a powerful digital presence through innovative technology, branding, and strategy."/>
+<meta name="keywords" content="Web Design Kenya, Website Development Kenya, Digital Solutions Kenya, Branding Services Kenya, SEO Services Kenya, Graphic Design Kenya, School Management Systems Kenya"/>
+<meta property="og:title" content="Digen | Transforming Ideas Into Digital Excellence"/>
+<meta property="og:description" content="We Build Powerful Digital Experiences That Help Businesses Grow."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #050d1f;
+  --navy-mid: #0a1628;
+  --navy-light: #0f1f3d;
+  --navy-card: #0d1a30;
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0,212,255,0.15);
+  --gold: #f0a500;
+  --gold-dim: rgba(240,165,0,0.15);
+  --white: #ffffff;
+  --gray-100: #f8f9fc;
+  --gray-200: #e8ecf4;
+  --gray-400: #8892a4;
+  --gray-600: #4a5568;
+  --text-main: #e8ecf4;
+  --text-muted: #6b7a99;
+  --border: rgba(0,212,255,0.12);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--navy);
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 10px; }
+
+/* ─── LOADER ─── */
+#loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#loader.hidden { opacity: 0; visibility: hidden; }
+.loader-inner {
+  text-align: center;
+}
+.loader-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.loader-bar {
+  width: 200px; height: 2px;
+  background: var(--navy-light);
+  margin: 16px auto 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.loader-bar::after {
+  content: '';
+  display: block;
+  width: 0%; height: 100%;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  animation: load 1.8s ease forwards;
+}
+@keyframes load { to { width: 100%; } }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+nav.scrolled {
+  background: rgba(5,13,31,0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.7rem;
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--gray-400);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+  font-family: 'Poppins', sans-serif;
+}
+.nav-links a:hover { color: var(--cyan); }
+.nav-cta {
+  background: linear-gradient(135deg, var(--cyan), #0099bb);
+  color: var(--navy) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,212,255,0.35) !important; }
+
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+  background: none; border: none;
+}
+.hamburger span {
+  width: 24px; height: 2px;
+  background: var(--text-main);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0;
+  background: rgba(5,13,31,0.98);
+  backdrop-filter: blur(20px);
+  padding: 2rem 5%;
+  border-bottom: 1px solid var(--border);
+  z-index: 999;
+}
+.mobile-menu.open { display: block; }
+.mobile-menu a {
+  display: block;
+  color: var(--gray-400);
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--cyan); }
+
+/* ─── THEME TOGGLE ─── */
+.theme-toggle {
+  width: 44px; height: 24px;
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+.theme-toggle::after {
+  content: '☀️';
+  position: absolute;
+  top: 2px; left: 3px;
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+.theme-toggle.light { background: #e0f0ff; }
+.theme-toggle.light::after { transform: translateX(20px); content: '🌙'; }
+
+/* ─── UTILITY ─── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+.section { padding: 100px 0; }
+.section-sm { padding: 70px 0; }
+.section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 1.25rem;
+}
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--gray-400);
+  max-width: 600px;
+  line-height: 1.8;
+}
+.text-center { text-align: center; }
+.text-center .section-sub { margin: 0 auto; }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--cyan) 0%, #0099bb 100%);
+  color: var(--navy);
+  box-shadow: 0 4px 20px rgba(0,212,255,0.25);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,212,255,0.4); }
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.25);
+}
+.btn-outline:hover { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), #d4810a);
+  color: var(--navy);
+}
+.btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(240,165,0,0.35); }
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.card:hover::before { transform: scaleX(1); }
+
+/* ─── FADE IN ANIMATION ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-up.delay-1 { transition-delay: 0.1s; }
+.fade-up.delay-2 { transition-delay: 0.2s; }
+.fade-up.delay-3 { transition-delay: 0.3s; }
+.fade-up.delay-4 { transition-delay: 0.4s; }
+.fade-up.delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 72px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,212,255,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 40% at 20% 80%, rgba(240,165,0,0.06) 0%, transparent 50%),
+              var(--navy);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: float 8s ease-in-out infinite;
+}
+.hero-orb-1 { width: 500px; height: 500px; background: rgba(0,212,255,0.07); top: -100px; right: -100px; }
+.hero-orb-2 { width: 300px; height: 300px; background: rgba(240,165,0,0.06); bottom: 50px; left: -50px; animation-delay: -4s; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+.hero-content {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  width: 100%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(0,212,255,0.1);
+  border: 1px solid rgba(0,212,255,0.25);
+  border-radius: 50px;
+  padding: 0.35rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--cyan);
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+.hero-badge::before { content: '●'; animation: pulse 1.5s infinite; color: var(--cyan); }
+.hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.hero-title span {
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--gray-400);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+.hero-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.hero-stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.75rem;
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.hero-stat-label { font-size: 0.78rem; color: var(--text-muted); font-family: 'Poppins', sans-serif; margin-top: 2px; }
+
+.hero-visual {
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.hero-visual-main {
+  width: 420px; height: 420px;
+  position: relative;
+}
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  animation: spin linear infinite;
+}
+.ring-1 {
+  inset: 0; border-color: rgba(0,212,255,0.15);
+  animation-duration: 20s;
+}
+.ring-2 {
+  inset: 30px; border-color: rgba(240,165,0,0.1);
+  animation-duration: 15s; animation-direction: reverse;
+}
+.ring-3 {
+  inset: 70px; border-color: rgba(0,212,255,0.1);
+  animation-duration: 25s;
+}
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+.hero-center-box {
+  position: absolute;
+  inset: 100px;
+  background: linear-gradient(135deg, var(--navy-card), var(--navy-light));
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+.hero-center-icon {
+  font-size: 3rem;
+  animation: float 4s ease-in-out infinite;
+}
+.hero-center-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-floating-card {
+  position: absolute;
+  background: rgba(10,22,40,0.9);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem;
+  backdrop-filter: blur(12px);
+  font-size: 0.78rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-main);
+  font-weight: 500;
+  animation: float 5s ease-in-out infinite;
+}
+.hero-floating-card .fc-icon { font-size: 1.1rem; margin-right: 0.35rem; }
+.fc-1 { top: 50px; right: -20px; animation-delay: -1s; }
+.fc-2 { bottom: 80px; left: -30px; animation-delay: -2.5s; }
+.fc-3 { top: 160px; left: -40px; animation-delay: -1.5s; }
+
+/* ═══════════════════════════════
+   TRUST / CLIENTS
+═══════════════════════════════ */
+#trust {
+  padding: 60px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--navy-mid);
+}
+.trust-text {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 2.5rem;
+}
+.logos-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 3rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.logo-placeholder {
+  width: 120px; height: 40px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+}
+.logo-placeholder:hover { border-color: rgba(0,212,255,0.3); color: var(--cyan); }
+.stats-row {
+  display: flex; justify-content: center; gap: 5rem; flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.stat-label { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; font-family: 'Poppins', sans-serif; }
+
+/* ═══════════════════════════════
+   ABOUT
+═══════════════════════════════ */
+#about .about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center;
+}
+.about-img-wrap {
+  position: relative;
+  height: 500px;
+}
+.about-img-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-card));
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.about-img-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0,212,255,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(240,165,0,0.08) 0%, transparent 50%);
+}
+.about-code-visual {
+  position: absolute;
+  inset: 30px;
+  background: rgba(5,13,31,0.8);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--cyan);
+  overflow: hidden;
+}
+.code-line { padding: 2px 0; opacity: 0.8; }
+.code-comment { color: var(--text-muted); }
+.code-keyword { color: var(--gold); }
+.code-string { color: #a8ff78; }
+
+.about-badge {
+  position: absolute;
+  background: linear-gradient(135deg, var(--cyan), #0099bb);
+  color: var(--navy);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  animation: float 4s ease-in-out infinite;
+}
+.ab-1 { bottom: 40px; right: -20px; animation-delay: 0s; }
+.ab-2 { top: 40px; left: -20px; animation-delay: -2s; }
+.ab-num { font-size: 1.5rem; line-height: 1; }
+
+.about-features { margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem; }
+.about-feature {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+.about-feature:hover { border-color: rgba(0,212,255,0.3); }
+.af-icon {
+  width: 42px; height: 42px;
+  background: var(--cyan-dim);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.af-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--white); }
+.af-text { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+
+/* ═══════════════════════════════
+   SERVICES
+═══════════════════════════════ */
+#services { background: var(--navy-mid); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.service-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.25rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.service-card:hover { transform: translateY(-8px); border-color: rgba(0,212,255,0.35); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+.service-card:hover::after { opacity: 1; }
+.svc-icon {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, var(--cyan-dim), rgba(240,165,0,0.1));
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+.svc-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+.svc-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.svc-tag {
+  padding: 0.25rem 0.75rem;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.15);
+  border-radius: 50px;
+  font-size: 0.72rem;
+  color: var(--cyan);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+.svc-arrow {
+  position: absolute;
+  bottom: 1.5rem; right: 1.5rem;
+  width: 36px; height: 36px;
+  background: var(--cyan-dim);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cyan);
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+.service-card:hover .svc-arrow { background: var(--cyan); color: var(--navy); transform: translate(2px, -2px); }
+
+/* ═══════════════════════════════
+   WHY CHOOSE US
+═══════════════════════════════ */
+#why .why-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+}
+.why-card {
+  text-align: center;
+  padding: 2rem 1.25rem;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.3s;
+}
+.why-card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+.why-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.25rem;
+  display: block;
+}
+.why-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.why-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ═══════════════════════════════
+   PORTFOLIO
+═══════════════════════════════ */
+#portfolio { background: var(--navy-mid); }
+.portfolio-filters {
+  display: flex; gap: 0.75rem; flex-wrap: wrap;
+  margin: 2.5rem 0;
+}
+.pf-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.pf-btn:hover, .pf-btn.active {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: var(--navy);
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.portfolio-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+}
+.pi-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-card));
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 0.75rem;
+}
+.pi-emoji { font-size: 3rem; }
+.pi-cat {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.pi-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,255,0.9), rgba(0,50,80,0.95));
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  gap: 0.75rem;
+}
+.portfolio-item:hover .pi-overlay { opacity: 1; }
+.pi-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+}
+.pi-sub { font-size: 0.82rem; color: rgba(255,255,255,0.8); }
+.pi-link {
+  padding: 0.5rem 1.25rem;
+  background: white;
+  color: var(--navy);
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+/* ═══════════════════════════════
+   PROCESS
+═══════════════════════════════ */
+#process .process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+  position: relative;
+}
+#process .process-steps::before {
+  content: '';
+  position: absolute;
+  top: 40px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--gold), var(--cyan), transparent);
+}
+.process-step {
+  text-align: center;
+  position: relative;
+}
+.ps-number {
+  width: 80px; height: 80px;
+  margin: 0 auto 1.5rem;
+  background: var(--navy-card);
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--navy-card), var(--navy-light));
+  position: relative; z-index: 1;
+  transition: all 0.3s;
+}
+.process-step:hover .ps-number {
+  border-color: var(--cyan);
+  box-shadow: 0 0 30px rgba(0,212,255,0.3);
+  color: var(--cyan);
+}
+.ps-icon { font-size: 2rem; }
+.ps-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.ps-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ═══════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════ */
+#testimonials { background: var(--navy-mid); }
+.testimonials-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-top: 3.5rem;
+}
+.testimonials-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s ease;
+}
+.testimonial-card {
+  min-width: calc(33.333% - 1rem);
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  flex-shrink: 0;
+  transition: border-color 0.3s;
+}
+.testimonial-card.active { border-color: rgba(0,212,255,0.3); }
+.tc-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 1.25rem; }
+.tc-quote {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+.tc-author { display: flex; align-items: center; gap: 1rem; }
+.tc-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--navy);
+  font-family: 'Montserrat', sans-serif;
+  flex-shrink: 0;
+}
+.tc-name { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--white); }
+.tc-role { font-size: 0.78rem; color: var(--text-muted); }
+.testimonial-dots {
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: 2.5rem;
+}
+.td {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer; transition: all 0.3s;
+  border: none;
+}
+.td.active { background: var(--cyan); width: 24px; border-radius: 4px; }
+
+/* ═══════════════════════════════
+   BLOG
+═══════════════════════════════ */
+#blog .blog-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.blog-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.blog-card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.blog-img {
+  height: 180px;
+  background: linear-gradient(135deg, var(--navy-light), var(--navy));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.blog-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(240,165,0,0.06));
+}
+.bc-body { padding: 1.5rem; }
+.bc-cat {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0.75rem;
+}
+.bc-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--white);
+  line-height: 1.45;
+  margin-bottom: 0.75rem;
+}
+.bc-excerpt { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem; }
+.bc-meta {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: 'Poppins', sans-serif;
+}
+.bc-read {
+  color: var(--cyan);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.78rem;
+}
+
+/* ═══════════════════════════════
+   CTA SECTION
+═══════════════════════════════ */
+#cta-section {
+  padding: 120px 0;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+#cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,212,255,0.07) 0%, transparent 60%);
+}
+.cta-inner {
+  position: relative; z-index: 1;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.cta-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.cta-title span {
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cta-text {
+  font-size: 1.05rem;
+  color: var(--gray-400);
+  line-height: 1.8;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ═══════════════════════════════
+   CONTACT
+═══════════════════════════════ */
+#contact { background: var(--navy-mid); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 5rem; align-items: start;
+  margin-top: 3.5rem;
+}
+.contact-info-items { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+.ci-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.25rem;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.3s;
+}
+.ci-item:hover { border-color: rgba(0,212,255,0.3); }
+.ci-icon {
+  width: 46px; height: 46px;
+  background: var(--cyan-dim);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.ci-label { font-size: 0.75rem; color: var(--text-muted); font-family: 'Poppins', sans-serif; }
+.ci-value { font-weight: 600; font-size: 0.9rem; color: var(--white); font-family: 'Poppins', sans-serif; margin-top: 2px; }
+
+.contact-form {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0.5rem;
+}
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.25s;
+  outline: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+}
+.form-group textarea { resize: vertical; min-height: 130px; }
+.form-group select option { background: var(--navy-card); color: var(--text-main); }
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+footer {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+  padding: 70px 0 30px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 3.5rem;
+  margin-bottom: 4rem;
+}
+.footer-brand-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--cyan), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+.footer-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; }
+.footer-social { display: flex; gap: 0.75rem; }
+.social-btn {
+  width: 38px; height: 38px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.25s;
+}
+.social-btn:hover { background: var(--cyan-dim); border-color: rgba(0,212,255,0.4); transform: translateY(-3px); }
+
+.footer-col-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--white);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--cyan); }
+
+.newsletter-form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.25s;
+}
+.newsletter-form input:focus { border-color: var(--cyan); }
+.newsletter-form button {
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, var(--cyan), #0099bb);
+  color: var(--navy);
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.newsletter-form button:hover { box-shadow: 0 8px 20px rgba(0,212,255,0.3); transform: translateY(-2px); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  display: flex;
+  align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.82rem; color: var(--text-muted); font-family: 'Inter', sans-serif; }
+.footer-copy span { color: var(--cyan); }
+.footer-tagline { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
+
+/* ═══════════════════════════════
+   WHATSAPP BTN
+═══════════════════════════════ */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 30px; right: 30px;
+  width: 58px; height: 58px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  font-size: 1.6rem;
+  z-index: 100;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+  transition: all 0.3s;
+  animation: bounce 2s ease-in-out infinite;
+}
+.whatsapp-btn:hover { transform: scale(1.12); box-shadow: 0 12px 40px rgba(37,211,102,0.55); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+/* ═══════════════════════════════
+   LIGHT MODE
+═══════════════════════════════ */
+body.light {
+  --navy: #f4f7fc;
+  --navy-mid: #ebeef5;
+  --navy-light: #dde3f0;
+  --navy-card: #ffffff;
+  --text-main: #1a2340;
+  --text-muted: #6b7a99;
+  --border: rgba(0,50,100,0.1);
+}
+body.light .nav-logo { color: var(--navy); }
+body.light .hero-grid { opacity: 0.3; }
+body.light .hero-title { color: var(--navy); }
+body.light .hero-center-box { background: white; }
+body.light .footer-brand-logo { color: var(--navy); }
+
+/* ═══════════════════════════════
+   RESPONSIVE
+═══════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .hero-stats { gap: 1.5rem; }
+  .about .about-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(3, 1fr); }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .process-steps::before { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .theme-toggle { margin-left: auto; }
+  .services-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .testimonials-track .testimonial-card { min-width: calc(100% - 0px); }
+  .blog-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-btns { flex-direction: column; }
+  .hero-stats { gap: 1rem; }
+  .stats-row { gap: 2rem; }
+  .logos-row { gap: 1.25rem; }
+  .cta-btns { flex-direction: column; align-items: center; }
+}
+@media (max-width: 480px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo">DIGEN</div>
+    <div class="loader-bar"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">DIGEN</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Start Project</a></li>
+  </ul>
+  <div class="theme-toggle" id="themeToggle" title="Toggle theme"></div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+  <a href="#blog" onclick="closeMobile()">Blog</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text-col fade-up">
+        <div class="hero-badge"><span>●</span> Kenya's Premium Digital Agency</div>
+        <h1 class="hero-title">Transforming Ideas Into<br><span>Digital Excellence</span></h1>
+        <p class="hero-sub">We Build Powerful Digital Experiences That Help Businesses Grow.</p>
+        <p class="hero-text">From websites and branding to digital systems and creative solutions, Digen helps organizations, businesses, ministries, and startups establish a strong digital presence that delivers real results.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-primary">🚀 Start Your Project</a>
+          <a href="#portfolio" class="btn btn-outline">View Our Work</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="120">0+</div>
+            <div class="hero-stat-label">Projects Done</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="95">0%</div>
+            <div class="hero-stat-label">Satisfaction</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="5">0+</div>
+            <div class="hero-stat-label">Years Exp.</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-main">
+          <div class="hero-ring ring-1"></div>
+          <div class="hero-ring ring-2"></div>
+          <div class="hero-ring ring-3"></div>
+          <div class="hero-center-box">
+            <div class="hero-center-icon">💡</div>
+            <div class="hero-center-label">DIGEN</div>
+          </div>
+          <div class="hero-floating-card fc-1"><span class="fc-icon">🌐</span>Web Design</div>
+          <div class="hero-floating-card fc-2"><span class="fc-icon">📈</span>Digital Growth</div>
+          <div class="hero-floating-card fc-3"><span class="fc-icon">🎨</span>Branding</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="container">
+    <div class="trust-text">Trusted by growing brands, ministries & organizations</div>
+    <div class="logos-row">
+      <div class="logo-placeholder">BRAND CO</div>
+      <div class="logo-placeholder">MINISTRY</div>
+      <div class="logo-placeholder">STARTUP X</div>
+      <div class="logo-placeholder">SCHOOL Y</div>
+      <div class="logo-placeholder">ORG HUB</div>
+      <div class="logo-placeholder">TECH KE</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item fade-up">
+        <div class="stat-num" data-count="120">0+</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat-item fade-up delay-1">
+        <div class="stat-num" data-count="95">0%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat-item fade-up delay-2">
+        <div class="stat-num" data-count="5">0+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item fade-up delay-3">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Support Available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap fade-up">
+        <div class="about-img-bg">
+          <div class="about-code-visual">
+            <div class="code-line"><span class="code-comment">// Building the future of digital Kenya</span></div>
+            <div class="code-line"><span class="code-keyword">const</span> digen = {</div>
+            <div class="code-line">&nbsp;&nbsp;mission: <span class="code-string">"Transform Ideas"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;vision: <span class="code-string">"Digital Excellence"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;clients: <span class="code-string">"Businesses & Ministries"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;quality: <span class="code-string">"World Class"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;impact: <span class="code-keyword">true</span></div>
+            <div class="code-line">};</div>
+            <br/>
+            <div class="code-line"><span class="code-keyword">function</span> buildYourPresence() {</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">return</span> digen.transform();</div>
+            <div class="code-line">}</div>
+          </div>
+        </div>
+        <div class="about-badge ab-1">
+          <div class="ab-num">120+</div>
+          <div>Projects Done</div>
+        </div>
+        <div class="about-badge ab-2">
+          <div>⭐ 5.0 Rating</div>
+        </div>
+      </div>
+      <div class="fade-up delay-2">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">A Creative Partner for Digital Growth</h2>
+        <p class="section-sub">Digen is a creative digital solutions company focused on helping brands grow through technology, design, and innovation.</p>
+        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.8;margin-top:1rem;margin-bottom:2rem;">We believe every business deserves a digital presence that communicates excellence, builds trust, and creates meaningful engagement with its audience. Our team works closely with businesses, ministries, institutions, entrepreneurs, and organizations to create customized digital solutions tailored to their goals.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="af-icon">💡</div>
+            <div>
+              <div class="af-title">Innovation-Driven Thinking</div>
+              <div class="af-text">We leverage the latest technologies to create forward-thinking digital solutions.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="af-icon">🤝</div>
+            <div>
+              <div class="af-title">Client-Centered Approach</div>
+              <div class="af-text">Your goals are our goals. We build lasting partnerships, not just projects.</div>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="af-icon">🏆</div>
+            <div>
+              <div class="af-title">Proven Excellence</div>
+              <div class="af-text">120+ successful projects delivering measurable results across Kenya and beyond.</div>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary" style="margin-top:1rem;">Learn More About Us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Our Digital Solutions</h2>
+      <p class="section-sub">We deliver end-to-end digital services that transform how businesses operate and communicate online.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up delay-1">
+        <div class="svc-icon">🌐</div>
+        <div class="svc-title">Website Design & Development</div>
+        <p class="svc-desc">We create modern, responsive, and professional websites that help brands stand out online and convert visitors into customers.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Mobile Friendly</span>
+          <span class="svc-tag">SEO Optimized</span>
+          <span class="svc-tag">Fast Loading</span>
+          <span class="svc-tag">CMS Ready</span>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="service-card fade-up delay-2">
+        <div class="svc-icon">🎨</div>
+        <div class="svc-title">Branding & Graphic Design</div>
+        <p class="svc-desc">We design impactful visual identities that create recognition, trust, and consistency across all platforms and touchpoints.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Logo Design</span>
+          <span class="svc-tag">Brand Identity</span>
+          <span class="svc-tag">UI Design</span>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="service-card fade-up delay-3">
+        <div class="svc-icon">📈</div>
+        <div class="svc-title">Digital Marketing</div>
+        <p class="svc-desc">Grow your online visibility and attract the right audience through strategic digital marketing campaigns that drive ROI.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">SEO</span>
+          <span class="svc-tag">Social Media</span>
+          <span class="svc-tag">Content</span>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="service-card fade-up delay-1">
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-title">Systems Development</div>
+        <p class="svc-desc">We develop smart digital systems that simplify operations, improve efficiency, and support organizational growth.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">School Systems</span>
+          <span class="svc-tag">CRM</span>
+          <span class="svc-tag">Portals</span>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="service-card fade-up delay-2">
+        <div class="svc-icon">🛡️</div>
+        <div class="svc-title">Hosting & Maintenance</div>
+        <p class="svc-desc">Reliable hosting and technical support to keep your business online, secure, and performing at its best 24/7.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">SSL Included</span>
+          <span class="svc-tag">Backups</span>
+          <span class="svc-tag">Uptime 99.9%</span>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="service-card fade-up delay-3" style="background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(240,165,0,0.05));border-color:rgba(0,212,255,0.25);">
+        <div class="svc-icon">✨</div>
+        <div class="svc-title">Custom Solutions</div>
+        <p class="svc-desc">Have a unique challenge? We design and build fully custom digital solutions tailored specifically to your organization's needs.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Bespoke</span>
+          <span class="svc-tag">Scalable</span>
+          <span class="svc-tag">Innovative</span>
+        </div>
+        <a href="#contact" class="btn btn-primary" style="margin-top:1rem;font-size:0.8rem;padding:0.6rem 1.25rem;">Discuss Your Idea →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">Our Edge</div>
+      <h2 class="section-title">Why Businesses Choose Digen</h2>
+      <p class="section-sub">We don't just build websites. We engineer digital transformations that create lasting competitive advantage.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up delay-1">
+        <span class="why-icon">💡</span>
+        <div class="why-title">Innovation-Driven</div>
+        <p class="why-text">We stay at the forefront of digital trends and technology to deliver future-ready solutions.</p>
+      </div>
+      <div class="why-card fade-up delay-2">
+        <span class="why-icon">❤️</span>
+        <div class="why-title">Client-Centered</div>
+        <p class="why-text">Your success is our success. We build transparent partnerships with honest communication.</p>
+      </div>
+      <div class="why-card fade-up delay-3">
+        <span class="why-icon">🏆</span>
+        <div class="why-title">Professional Excellence</div>
+        <p class="why-text">World-class quality standards on every project, regardless of size or budget.</p>
+      </div>
+      <div class="why-card fade-up delay-4">
+        <span class="why-icon">📐</span>
+        <div class="why-title">Scalable Solutions</div>
+        <p class="why-text">We build platforms that grow with your business — from startup to enterprise.</p>
+      </div>
+      <div class="why-card fade-up delay-5">
+        <span class="why-icon">🔧</span>
+        <div class="why-title">Reliable Support</div>
+        <p class="why-text">24/7 technical support to ensure your digital assets are always performing optimally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-sub">A selection of digital solutions we've crafted for businesses, ministries, and organizations.</p>
+    </div>
+    <div class="portfolio-filters fade-up">
+      <button class="pf-btn active" onclick="filterPortfolio('all',this)">All Projects</button>
+      <button class="pf-btn" onclick="filterPortfolio('web',this)">Corporate Websites</button>
+      <button class="pf-btn" onclick="filterPortfolio('ministry',this)">Ministries</button>
+      <button class="pf-btn" onclick="filterPortfolio('school',this)">School Portals</button>
+      <button class="pf-btn" onclick="filterPortfolio('brand',this)">Branding</button>
+      <button class="pf-btn" onclick="filterPortfolio('ecom',this)">E-commerce</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+      <div class="portfolio-item fade-up" data-cat="web">
+        <div class="pi-bg"><div class="pi-emoji">🏢</div><div class="pi-cat">Corporate Website</div></div>
+        <div class="pi-overlay">
+          <div class="pi-title">Kenyatta Business Group</div>
+          <div class="pi-sub">Modern corporate website with full CMS integration</div>
+          <a href="#" class="pi-link">View Case Study</a>
+        </div>
+      </div>
+      <div class="portfolio-item fade-up delay-1" data-cat="ministry">
+        <div class="pi-bg"><div class="pi-emoji">⛪</div><div class="pi-cat">Ministry Website</div></div>
+        <div class="pi-overlay">
+          <div class="pi-title">Grace Fellowship Ministry</div>
+          <div class="pi-sub">Full-featured ministry website with media & events</div>
+          <a href="#" class="pi-link">View Case Study</a>
+        </div>
+      </div>
+      <div class="portfolio-item fade-up delay-2" data-cat="school">
+        <div class="pi-bg"><div class="pi-emoji">🎓</div><div class="pi-cat">School Portal</div></div>
+        <div class="pi-overlay">
+          <div class="pi-title">Nairobi Academy Portal</div>
+          <div class="pi-sub">Complete school management & communication system</div>
+          <a href="#" class="pi-link">View Case Study</a>
+        </div>
+      </div>
+      <div class="portfolio-item fade-up delay-1" data-cat="brand">
+        <div class="pi-bg"><div class="pi-emoji">🎨</div><div class="pi-cat">Branding Project</div></div>
+        <div class="pi-overlay">
+          <div class="pi-title">Savanna Creatives</div>
+          <div class="pi-sub">Complete brand identity and visual design system</div>
+          <a href="#" class="pi-link">View Case Study</a>
+        </div>
+      </div>
+      <div class="portfolio-item fade-up delay-2" data-cat="ecom">
+        <div class="pi-bg"><div class="pi-emoji">🛒</div><div class="pi-cat">E-commerce</div></div>
+        <div class="pi-overlay">
+          <div class="pi-title">Karibu Market</div>
+          <div class="pi-sub">Full e-commerce platform with M-Pesa integration</div>
+          <a href="#" class="pi-link">View Case Study</a>
+        </div>
+      </div>
+      <div class="portfolio-item fade-up delay-3" data-cat="web">
+        <div class="pi-bg"><div class="pi-emoji">🚀</div><div class="pi-cat">Startup Platform</div></div>
+        <div class="pi-overlay">
+          <div class="pi-title">TechVenture KE</div>
+          <div class="pi-sub">SaaS startup landing page with investor deck</div>
+          <a href="#" class="pi-link">View Case Study</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="#contact" class="btn btn-outline">View Full Portfolio →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="section" style="background:var(--navy-mid);">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">How We Work</div>
+      <h2 class="section-title">Our Proven Process</h2>
+      <p class="section-sub">A clear, transparent 4-step process that ensures every project is delivered with precision and excellence.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-up delay-1">
+        <div class="ps-number"><span class="ps-icon">🔍</span></div>
+        <div class="ps-title">01. Discovery</div>
+        <p class="ps-text">We take time to deeply understand your goals, audience, challenges, and vision before writing a single line of code.</p>
+      </div>
+      <div class="process-step fade-up delay-2">
+        <div class="ps-number"><span class="ps-icon">📋</span></div>
+        <div class="ps-title">02. Strategy</div>
+        <p class="ps-text">We develop a tailored digital approach — the right technology, the right design, the right communication plan for your brand.</p>
+      </div>
+      <div class="process-step fade-up delay-3">
+        <div class="ps-number"><span class="ps-icon">⚡</span></div>
+        <div class="ps-title">03. Design & Build</div>
+        <p class="ps-text">Our team designs, develops, and refines your solution with iterative feedback loops ensuring perfect results.</p>
+      </div>
+      <div class="process-step fade-up delay-4">
+        <div class="ps-number"><span class="ps-icon">🚀</span></div>
+        <div class="ps-title">04. Launch & Support</div>
+        <p class="ps-text">We deploy your project with care, then provide ongoing support, maintenance, and optimization as you grow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">Client Stories</div>
+      <h2 class="section-title">What Our Clients Say</h2>
+      <p class="section-sub">Real words from real clients who trusted Digen with their digital transformation.</p>
+    </div>
+    <div class="testimonials-wrapper fade-up">
+      <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card active">
+          <div class="tc-stars">★★★★★</div>
+          <p class="tc-quote">"Digen transformed our online presence completely. Our website now truly represents the excellence of our ministry, and we've seen a significant increase in our online congregation engagement."</p>
+          <div class="tc-author">
+            <div class="tc-avatar">PM</div>
+            <div>
+              <div class="tc-name">Pastor Michael Oduya</div>
+              <div class="tc-role">Senior Pastor, Grace Fellowship Ministry</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-stars">★★★★★</div>
+          <p class="tc-quote">"Their professionalism and creativity exceeded our expectations. The team understood exactly what we needed for our school portal, and delivered something far beyond what we imagined possible."</p>
+          <div class="tc-author">
+            <div class="tc-avatar">SW</div>
+            <div>
+              <div class="tc-name">Sarah Wanjiku</div>
+              <div class="tc-role">Principal, Nairobi Academy</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-stars">★★★★★</div>
+          <p class="tc-quote">"The team delivered a modern and functional management system that significantly improved our operations. Response times, billing, and reporting all transformed within months of launch."</p>
+          <div class="tc-author">
+            <div class="tc-avatar">JK</div>
+            <div>
+              <div class="tc-name">James Kamau</div>
+              <div class="tc-role">CEO, Karibu Business Group</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-stars">★★★★★</div>
+          <p class="tc-quote">"Digen gave us a brand identity that truly sets us apart in a competitive market. The logo, colors, and entire visual language they created for us has become our most recognizable asset."</p>
+          <div class="tc-author">
+            <div class="tc-avatar">AG</div>
+            <div>
+              <div class="tc-name">Amina Gitau</div>
+              <div class="tc-role">Founder, Savanna Creatives</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-stars">★★★★★</div>
+          <p class="tc-quote">"From concept to launch in 3 weeks — Digen delivered an exceptional e-commerce experience with seamless M-Pesa integration. Our online sales grew by 300% in the first quarter after launch."</p>
+          <div class="tc-author">
+            <div class="tc-avatar">DN</div>
+            <div>
+              <div class="tc-name">David Njoroge</div>
+              <div class="tc-role">Director, Karibu Market</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-dots" id="testimonialDots">
+      <button class="td active" onclick="goToSlide(0)"></button>
+      <button class="td" onclick="goToSlide(1)"></button>
+      <button class="td" onclick="goToSlide(2)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="section" style="background:var(--navy-mid);">
+  <div class="container">
+    <div class="text-center fade-up" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="section-label">Insights</div>
+      <h2 class="section-title">Digital Growth Resources</h2>
+      <p class="section-sub">Expert tips, trends, and strategies to help you grow your digital presence in Kenya and beyond.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card fade-up delay-1">
+        <div class="blog-img">🌐</div>
+        <div class="bc-body">
+          <div class="bc-cat">Web Development</div>
+          <div class="bc-title">Why Every Business in Kenya Needs a Professional Website in 2025</div>
+          <div class="bc-excerpt">Discover how a professional website transforms customer trust, drives leads, and positions your brand as a market leader in Kenya's fast-growing digital economy.</div>
+          <div class="bc-meta">
+            <span>May 2025 · 5 min read</span>
+            <a href="#" class="bc-read">Read More →</a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card fade-up delay-2">
+        <div class="blog-img">📈</div>
+        <div class="bc-body">
+          <div class="bc-cat">Digital Marketing</div>
+          <div class="bc-title">Top Digital Marketing Trends Reshaping Business in Kenya</div>
+          <div class="bc-excerpt">From WhatsApp marketing to influencer partnerships, explore the strategies driving massive growth for Kenyan brands across digital channels in 2025.</div>
+          <div class="bc-meta">
+            <span>April 2025 · 7 min read</span>
+            <a href="#" class="bc-read">Read More →</a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card fade-up delay-3">
+        <div class="blog-img">🎨</div>
+        <div class="bc-body">
+          <div class="bc-cat">Branding</div>
+          <div class="bc-title">How Strong Branding Builds Business Trust and Customer Loyalty</div>
+          <div class="bc-excerpt">Learn how investing in a cohesive brand identity creates lasting impressions, builds credibility, and turns first-time customers into lifelong brand advocates.</div>
+          <div class="bc-meta">
+            <span>March 2025 · 4 min read</span>
+            <a href="#" class="bc-read">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="#" class="btn btn-outline">View All Articles →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section id="cta-section">
+  <div class="container">
+    <div class="cta-inner fade-up">
+      <div class="section-label" style="justify-content:center;display:flex;">Let's Build Together</div>
+      <h2 class="cta-title">Ready To Build Something<br><span>Exceptional?</span></h2>
+      <p class="cta-text">Whether you are launching a brand, upgrading your website, or building a digital system, Digen is ready to help you bring your vision to life. Let's start a conversation.</p>
+      <div class="cta-btns">
+        <a href="#contact" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem;">📅 Book a Consultation</a>
+        <a href="https://wa.me/254728532560" class="btn btn-gold" style="font-size:1rem;padding:1rem 2.5rem;">💬 Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Start Your Project Today</h2>
+      <p class="section-sub">Ready to transform your digital presence? We'd love to hear about your project and explore how we can help.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.8;margin-bottom:1rem;">From Nairobi to across Kenya and beyond, Digen delivers world-class digital solutions for every type of organization. Reach out and let's create something remarkable together.</p>
+        <div class="contact-info-items">
+          <div class="ci-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">Our Location</div>
+              <div class="ci-value">Nairobi, Kenya</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <div class="ci-label">Email Us</div>
+              <div class="ci-value">hello@digen.co.ke</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">📱</div>
+            <div>
+              <div class="ci-label">Call / WhatsApp</div>
+              <div class="ci-value">+254 728 532 560</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">⏰</div>
+            <div>
+              <div class="ci-label">Working Hours</div>
+              <div class="ci-value">Mon–Sat, 8AM–7PM EAT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form fade-up delay-2">
+        <h3 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.15rem;color:var(--white);margin-bottom:1.75rem;">Send Us a Message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="John Kamau"/>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="john@example.com"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+254 728 532 560"/>
+          </div>
+          <div class="form-group">
+            <label>Service Interested In</label>
+            <select>
+              <option>Select a service...</option>
+              <option>Website Design & Development</option>
+              <option>Branding & Graphic Design</option>
+              <option>Digital Marketing</option>
+              <option>Systems Development</option>
+              <option>Hosting & Maintenance</option>
+              <option>Custom Solution</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your Message / Project Brief</label>
+          <textarea placeholder="Tell us about your project, goals, timeline, and budget..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.95rem;padding:0.9rem;" onclick="handleFormSubmit(this)">Send Message 🚀</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">DIGEN</div>
+        <p class="footer-desc">A trusted digital transformation and creative solutions partner helping businesses, ministries, schools, and startups establish powerful digital presence across Kenya and Africa.</p>
+        <p style="font-size:0.82rem;color:var(--cyan);font-style:italic;margin-bottom:1.5rem;">Let's build your next digital solution.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Twitter/X">𝕏</a>
+          <a href="#" class="social-btn" title="LinkedIn">in</a>
+          <a href="#" class="social-btn" title="Instagram">📷</a>
+          <a href="#" class="social-btn" title="Facebook">f</a>
+          <a href="https://wa.me/254728532560" class="social-btn" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Digen</a></li>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#process">How We Work</a></li>
+          <li><a href="#blog">Blog & Insights</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Web Design</a></li>
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">Branding & Design</a></li>
+          <li><a href="#">Digital Marketing</a></li>
+          <li><a href="#">Systems Development</a></li>
+          <li><a href="#">Hosting & Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Newsletter</div>
+        <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem;">Get digital growth tips and Kenya tech insights delivered to your inbox.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com"/>
+          <button>Subscribe</button>
+        </div>
+        <p style="font-size:0.72rem;color:var(--text-muted);margin-top:0.75rem;">📧 No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 <span>DIGEN</span>. All rights reserved. | Nairobi, Kenya</div>
+      <div class="footer-tagline">Transforming Ideas Into Digital Excellence ✦</div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/254728532560" class="whatsapp-btn" title="Chat on WhatsApp">💬</a>
+
+<script>
+// ─── LOADER ───
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2000);
+});
+
+// ─── NAV SCROLL ───
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ─── HAMBURGER ───
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// ─── THEME TOGGLE ───
+const toggle = document.getElementById('themeToggle');
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('light');
+  toggle.classList.toggle('light');
+});
+
+// ─── INTERSECTION OBSERVER (fade-up) ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Trigger counter if stat
+      const num = e.target.querySelector('[data-count]');
+      if (num) animateCount(num);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ─── COUNTER ANIMATION ───
+function animateCount(el) {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.textContent.replace(/[0-9]/g, '').trim() || (el.textContent.includes('%') ? '%' : '+');
+  let start = 0;
+  const duration = 2000;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(ease * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Auto-trigger stats counters on scroll
+document.querySelectorAll('[data-count]').forEach(el => {
+  const parentFadeUp = el.closest('.fade-up') || el.parentElement;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(el);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(parentFadeUp);
+});
+
+// ─── PORTFOLIO FILTER ───
+function filterPortfolio(cat, btn) {
+  document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    if (cat === 'all' || item.dataset.cat === cat) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// ─── TESTIMONIALS CAROUSEL ───
+let currentSlide = 0;
+const track = document.getElementById('testimonialsTrack');
+const dots = document.querySelectorAll('.td');
+const cards = document.querySelectorAll('.testimonial-card');
+const visibleCards = window.innerWidth > 768 ? 3 : 1;
+const totalSlides = Math.ceil(cards.length / visibleCards);
+
+function goToSlide(n) {
+  currentSlide = n;
+  const cardW = cards[0].offsetWidth + 24;
+  track.style.transform = `translateX(-${n * cardW * visibleCards}px)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === n));
+  cards.forEach((c, i) => c.classList.toggle('active', Math.floor(i / visibleCards) === n));
+}
+
+// Auto slide
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  goToSlide(currentSlide);
+}, 5000);
+
+// ─── FORM SUBMIT ───
+function handleFormSubmit(btn) {
+  btn.textContent = '✅ Message Sent!';
+  btn.style.background = 'linear-gradient(135deg, #00c97a, #00a862)';
+  setTimeout(() => {
+    btn.textContent = 'Send Message 🚀';
+    btn.style.background = '';
+  }, 3500);
+}
+
+// ─── SMOOTH SCROLL ───
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
